@@ -1,0 +1,39 @@
+<?php
+// src/AppBundle/DataFixtures/ORM/LoadImageData.php
+
+namespace AppBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use AppBundle\Entity\Image;
+
+class LoadImageData implements FixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {
+        // Liste des noms de catégorie à ajouter
+    $alts = array(
+      'new-1',
+      'new-2',
+      'new-3',
+          );
+    $urls = array(
+      'images/media/news-1.jpg',
+      'images/media/news-2.jpg',
+      'images/media/news-3.jpg',
+          );
+
+    foreach ($alts as $index => $alt) {
+      
+      $image = new Image();
+      $image->setAlt($al);
+      $image->setUrl($urls[$index]);
+
+      
+      $manager->persist($image);
+    }
+
+    
+    $manager->flush();
+    }
+}

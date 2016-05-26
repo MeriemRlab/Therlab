@@ -1,0 +1,289 @@
+{# index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - Home
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+    {{ parent() }}
+    <!-- MAIN CONTAINER -->
+    <div class="main-content">
+      <!-- Image Slider --> 
+      <section class="slider-content">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- .row -->
+              <div class="row">
+                <div class="col-xs-12 no-padding">
+                  <div class="banner-model">
+                    
+                        <img src="{{ asset('images/backgrounds/OulophylliaUVDarkGif.gif') }}" alt="OulophylliaUVDark" height="550" width="900">
+                        
+                    </div>
+                    <div class="slider-inner">
+                      <div class="boxed">
+                        <h1 class="text-primary wow fadeInDown text-uppercase"  data-wow-duration="1.8s" data-wow-delay=".2s">The "R" lab</h1>
+                        <span class="line-sep-green"></span>
+                        <h3 class="text-white text-uppercase wow fadeInUp" style="white-space: nowrap;" data-wow-duration="1s" data-wow-delay=".3s">
+                          The Integrative Biology Laboratory
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section> 
+      <!-- /Image Slider --> 
+      <section class="blue cut-ccw02">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- .row -->
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <h2 class="uppercase wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">The "R" Laboratory</h2>
+                  <span class="line-sep-blue"></span>
+                  <p class="wow fadeInUp"  data-wow-duration="1s" data-wow-delay=".3s">
+                    The "R" lab (renaissance) is an interdisciplinary platform 
+					integrating knowledge from Arts to Zoology to put Life Sciences into context.
+					We follow circular economy approaches and move forward 
+					towards a fully three dimensional view of the biological world.  
+                  </p>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+
+                  <div class="thumbnail mar-auto wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    <figure>
+                      <img src="{{ asset('images/media/Copepod.jpg') }}" class="img-responsive" alt="" />                                
+                      <div class="image-overlay">
+                        <p>
+                          <a href="{{ asset('images/media/Copepod.jpg') }}" class="show-image">
+                            <i class="iline2-arrows55"></i>
+                          </a>
+                        </p>
+                      </div><!--image overlay-->
+                    </figure><!--/figure-->
+                  </div>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+     <section class="pattern-3">
+			<h1 class="text-uppercase text-primary wow fadeInDown text-center"  data-wow-duration=".8s" data-wow-delay=".2s">Latest News</h1>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="panel-group panel-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+			{% for new in news %}
+		<!-- panel  -->
+                <div class="panel panel-default">
+				   <div class="panel-heading" role="tab" id="{{ "heading"~tagClasses[loop.index] }}">
+                        <div  class="side-tab" data-target="{{"#tab"~loop.index}}" data-toggle="tab" role="tab" aria-expanded="false">
+                          <h4 class="panel-title">
+                            <a {% if loop.first == false %}class="collapsed"{% endif %} role="button" data-toggle="collapse" data-parent="#accordion" href="{{ "#collapse"~tagClasses[loop.index] }}" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}" aria-controls="{{ "collapse"~tagClasses[loop.index] }}">
+                              {{ new.title }}
+                            </a>
+                          </h4>
+                        </div>
+                        <i class="icon iline2-arrow407"></i>
+                      </div>
+                      <div id="{{ "collapse"~tagClasses[loop.index] }}" class="panel-collapse collapse{% if loop.first %} in{%endif%}" role="tabpanel" aria-labelledby="{{ "heading"~tagClasses[loop.index] }}">
+			<p class="panel-body no-margin-bottom">
+                          {{ new.content }}
+                        </p>
+                      </div>
+
+		</div>
+                <!-- /panel  -->
+ 			{% endfor %}
+                
+                  </div> <!-- /.panel-group -->
+                </div> <!-- /.col-md-6 -->
+                <div class="col-md-6 hidden-xs">
+                  <!-- begin notebook mockup -->
+                  <div class="md-notebook md-glare">
+                    <div class="md-lid">
+                      <div class="md-camera"></div>
+                      <div class="md-screen">
+                        <!-- content goes here -->                
+                        <div class="tab-featured-image">
+                          <div class="tab-content">
+                           {% for new in news %}
+				<div class="tab-pane {% if loop.first%}in active{% elseif loop.last %}fade{% endif %}" id="{{"tab"~loop.index }}" >
+					{{ include ('newspic.html.twig' , {new: new}, with_context=false) }}
+				</div>
+	 		   {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="md-base"></div>
+                  </div> <!-- end notebook mockup -->
+                </div> <!-- /.col-md-6 -->
+              </div> <!--/ .row -->
+            </div>
+          </div>
+        </div>
+        <!-- comment -->
+      </section>
+      <!-- Features -->
+      <section class="white">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- .row -->
+              <div class="row">
+                <div class="col-md-6 mar-bottom-md">
+                  <span class="icon icon-3DBio"></span>
+                  <h2 class="wow fadeInDown text-uppercase"  data-wow-duration=".8s" data-wow-delay=".2s">3D Biological Imaging</h2>
+                  <span class="line-sep-gray"></span>
+                  <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    From light sheet microscopy to kite aerial photogrammetry, 
+					the Rlab aims to image the biological world as it is.
+                  </p>
+                </div>
+                <div class="col-md-6 mar-bottom-md">
+                  <span class="icon icon-tissEng"></span>
+                  <h2 class="wow fadeInDown text-uppercase"  data-wow-duration=".8s" data-wow-delay=".2s">Tissue Engineering</h2>
+                  <span class="line-sep-gray"></span>
+                  <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    Using microcarriers, microcontact printing or even 3D bioprinting,
+					we develop more realistic tissue model systems.
+                  </p>
+                </div>
+                <div class="col-md-6 mar-bottom-md">
+                  <span class="icon icon-cellBio"></span>
+                  <h2 class="wow fadeInDown text-uppercase"  data-wow-duration=".8s" data-wow-delay=".2s">Evolutionary Cell Biology</h2>
+                  <span class="line-sep-gray"></span>
+                  <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    Understanding tissue functions requires a deeper understanding of
+					its origins and the deeper roots explaining its current complex compartmentalisation.
+                  </p>
+                </div>
+                <div class="col-md-6 mar-bottom-md">
+                  <span class="icon icon-society"></span>
+                  <h2 class="wow fadeInDown text-uppercase"  data-wow-duration=".8s" data-wow-delay=".2s">Science and Society</h2>
+                  <span class="line-sep-gray"></span>
+                  <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    We work with schools, designers, artists, NGOs on specific biology 
+					related projects and provide consultancy services to companies.
+                  </p>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /Features -->
+     
+      <!-- Mission -->
+      <section class="pattern-3">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- .row -->
+              <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                  <h2 class="wow fadeInDown text-uppercase"  data-wow-duration=".8s" data-wow-delay=".2s">Our mission and vision</h2>
+                  <span class="line-sep-gray"></span>
+                  <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    The Integrative Biology Laboratory or "R" Lab is a pluri-disciplinary laboratory 
+                    focusing on the functions of epithelia. We use physics, chemistry, engineering, 
+                    molecular and cell biology techniques to study the secretory process. 
+                    We combine an evolutionary approach from Planctomycetes to Human to new biophysical 
+                    and optical methods ranging from cell "morphing" to Light Sheet Microscopy for 3D imaging.
+                    Our ultimate goal is to achieve a continuum of knowledge from single bacteria excretion capacity
+                    to complex tissue secretion ability in an organism context. For example, we currently studide 
+                    epithelia functions at the molecular level within artificial epithelial tissues (lung, kidney, gut) 
+                    to create optimal conditions for cell biology and molecular approaches as well as drug screening 
+                    on specifically targeted functions: protein expressing defect (cystic fibrosis, lung), 
+                    water retention (kidney diseases), tumor formation (Epithelial Mesenchymal Transition EMT, metastasis..) or even infections.
+                    We also provide advices and optical set-ups to research groups and collaborate extensively with 
+                    the private sectors (Carl Zeiss Microscopy GmbH, Aquamarine Power Ltd, ANDOR Ltd, Aura Optik GmbH, Vornia Ltd...).
+                  </p>
+                 
+                </div>
+                <!-- /.col-md-12 -->
+              </div>
+              <!-- /.row -->
+              <!-- .row -->
+              <div class="row">
+                <!-- .col-md-12 -->
+                <div class="col-md-12">
+                 
+                </div>
+                <!-- /.col-md-12 -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /Mission -->
+
+    <!-- Begin logos section-->
+       <!-- /.row -->
+              <div class="row">
+                <div class="">
+                  <!-- .logos -->
+                  <ul class="logos">
+                   {% for image in images %}
+                    <li><img src="{{ asset("" ~ image.url  ) }}" alt="{{ image.url }}"/></li>
+			{% endfor %}
+                  </ul>
+                  <!-- /.logos -->
+                </div>
+              </div>
+              <!-- /.row -->
+      <!-- /Logos section-->
+{% endblock %} 
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+

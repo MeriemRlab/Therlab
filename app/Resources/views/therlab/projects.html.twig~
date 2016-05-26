@@ -1,0 +1,60 @@
+{# projects.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - Projects
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+ 
+   {{ parent()}}
+
+     <!-- MAIN CONTAINER -->
+    <div class="main-content">
+      <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-7" data-type="sprite" data-offsetY="-250" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="#">Projects</a></li>
+                <li><a class="link" href="#">Current</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- HEADER TREE END -->
+        {% set classes = ['blue', 'pattern-3', 'white'] %}
+        {% for project in projects %}
+		<section class="{{ cycle(classes, loop.index) }}">
+				
+			{{ include ('project.html.twig' , {project: project}, with_context=false) }}
+		
+		</section>		
+	{% endfor %}
+      
+
+  {% endblock %}
+ 
+    
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+

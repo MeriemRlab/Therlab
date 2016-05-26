@@ -1,0 +1,93 @@
+{# light-sheet.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - Light Sheet
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+ 
+   {{ parent()}}
+
+	 <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-11" data-type="sprite" data-offsetY="-250" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="#">Datasets</a></li>
+                <li><a class="link" href="#">Light Sheet</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+  
+   {% set classes = ['blue', 'pattern-3', 'white'] %}
+     {% for project in projects %}
+      <section class="{{ cycle(classes, loop.index) }}">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+                <!-- .row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <h2 class="text-primary text-uppercase">{{ project.title }}</h2>
+                  <span class="line-sep-blue"></span>
+                  <p class="wow fadeInUp"  data-wow-duration="1s" data-wow-delay=".4s">
+                {{ project.description }}
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <div class="thumbnail">
+                    <figure>
+                      <img src="{{ asset("" ~ project.image.url  ) }}" class="img-responsive" alt="" />                                
+                      <div class="image-overlay">
+                        <p>
+                          <a href="{{ asset("" ~ project.image.url  ) }}" class="show-image">
+                            <i class="iline2-arrows55"></i>
+                          </a>
+                        </p>
+                      </div><!--image overlay-->
+                    </figure><!--/figure-->
+                  </div>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+        <!-- /Product item -->
+      </section>
+           			
+      {% endfor %}
+
+  {% endblock %}
+ 
+    
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+

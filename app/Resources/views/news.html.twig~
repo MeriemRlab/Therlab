@@ -1,0 +1,24 @@
+{# news.html.twig #}
+
+
+                    <!-- panel  -->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <div  class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
+                          <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              {{ new.title }}
+                            </a>
+                          </h4>
+                        </div>
+                        <i class="icon iline2-arrow407"></i>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			<p class="panel-body no-margin-bottom">
+                          {{ new.content }}
+                        </p>
+                      </div>
+                    </div>
+                    <!-- /panel  -->
+
+

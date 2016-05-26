@@ -1,0 +1,109 @@
+{# blaschka.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - 3D Models
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+ 
+   {{ parent()}}
+
+	 <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-11" data-type="sprite" data-offsetY="-250" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="#">Datasets</a></li>
+                <li><a class="link" href="#">3D Models</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- HEADER TREE END -->
+
+  
+      <section class="pattern-3">
+        <!-- .container -->
+        <div id="wrapper">
+
+
+  <div id="content">
+<iframe width="900" height="520" src="" id="api-frame" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></div>
+  <div id="sidebar"> 
+<h2 class="wow fadeInDown text-uppercase"  data-wow-duration=".8s" data-wow-delay=".2s">{{ model.name }}</h2>
+                  <span class="line-sep-blue"></span>
+                  <p class="wow fadeInUp"  data-wow-duration="1s" data-wow-delay=".4s">
+                    {{ model.description }}
+                  </p>
+                   <ul class="ic-list wow bounceInRight"  data-wow-duration="1s" data-wow-delay="1.4s">
+                    <li>
+                      <i class="icon iline2-id1"></i> By {{ model.author }}
+                    </li>
+                    <li>
+                      <i class="icon iline1-clock34"></i> Published {{ model.date|time_diff  }}
+                    </li>
+                    <li>
+                      <i class="icon iline1-information29"></i> Model Quality: {{ model.modelQuality }} <br/> 
+								Model size: {{ model.modelSize }} <br/> 
+								3D Model size: {{ model.model3dSize }} <br/>
+								Other informations: {{ model.disclaimer }}
+                    </li>
+                  </ul>
+  </div>
+  <div id="cleared"></div>
+</div>
+        <!-- /.container -->
+      </section>
+           			
+  
+
+  {% endblock %}
+ 
+    
+
+{% block javascripts %}
+{{ parent() }}
+ <!-- Initialize the viewer -->
+ <script type="text/javascript" src="https://d2f25wgezub9nf.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
+<script type="text/javascript">
+    var iframe = document.getElementById( 'api-frame' );
+    var version = '1.0.0';
+    var urlid = '{{ model.modelId  }}';
+    var client = new Sketchfab( version, iframe );
+
+    client.init( urlid, {
+        success: function onSuccess( api ){
+            api.start();
+            api.addEventListener( 'viewerready', function() {
+
+                // API is ready to use
+                // Insert your code here
+                console.log( 'Viewer is ready' );
+
+            } );
+        },
+        error: function onError() {
+            console.log( 'Viewer error' );
+        }
+    } );
+    </script>
+{% endblock %}
+

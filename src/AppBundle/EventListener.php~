@@ -1,0 +1,66 @@
+<?php
+namespace AppBundle\EventListener;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use AppBundle\Entity\SketchfabModel;
+
+class EasyAdminSubscriber implements EventSubscriberInterface
+{
+    private $modelId;
+
+    public function __construct($modelId)
+    {
+        $this->modelId = $modelId;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'easy_admin.pre_persist' => array('setModelId'),
+        );
+    }
+
+    public function setModelId(GenericEvent $event)
+    {
+        $entity = $event->getSubject();
+
+        if (!($entity instanceof SketchfabModel)) {
+            return;
+        }
+
+	$name = $entity->getName();
+	$description = $entity->getDescription();
+	$file = $entity->getFile();
+	$tags = $entity->getTags();
+
+	$params = array(
+	 "name" => $name,
+	 "description" => $description,
+	 "modelFile" => new CurlFile($file),
+	 "token" => '904ce0bdc18d4068abb58d0b066228ff',
+	 "tags" => $tags,
+	 "private" => 1
+	     );
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,true); 
+	curl_setopt($ch, CURLOPT_URL, "https://api.sketchfab.com/v2/models");
+	$result = curl_exec($ch);
+	if($result === false)
+	  echo curl_error($ch);
+	else
+	  //print_r($result) ;
+	  print_r("<script>console.log('PHP: ".$result."');</script>");
+
+        $modelId = 
+        $entity->setSlug($modelId);
+
+        $event['entity'] = $entity;
+    }
+}
+
+
+	

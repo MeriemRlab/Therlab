@@ -1,0 +1,136 @@
+{# posts.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - Blog
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+  
+  {{ parent() }}
+ 
+  <!-- MAIN CONTAINER -->
+    <div class="main-content">
+      <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="{{ path('platform_posts') }}">Blog</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- HEADER TREE END -->
+      <!-- BLOG POST BODY SECTION -->
+      <section class="pattern-3 no-padding-right">
+        <h2 class="hidden">blog posts</h2>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- All blog posts -->
+              <div class="mar-top-lg row">
+                <!-- Left part -->
+                <div class="col-md-8 blog-main">
+                  <section  class="blog-post-list no-padding">
+                    <h2 class="hidden">Last Posts</h2>
+                    <!-- .blog-post -->
+{% for post in listPosts %}
+                    <article class="blog-post wow fadeInUp" data-wow-duration="1s">
+                      <span class="blog-date">
+			{% set dateTime = date(post.createdAt) %}
+                        {{ dateTime | date('d') }}
+                        <small class="blog-month">{{ dateTime | date('M') }}</small>
+                      </span>
+                      <span class="post-comments">
+                        <a class="iline2-rectangular22"></a>
+                        <small class="post-count">{{ post_commentsNb[post.id].id }}</small>
+                      </span>
+                      <div class="blog-body">
+                        <header class="entry-header">
+                          <a  href="{{ path('platform_post', {'id': post.id}) }}">
+                            <img src="{{asset("" ~ post.image.url  ) }}" alt="post 1" class="img-responsive img-full" />
+                            <div class="image-overlay">
+                              <p>
+                                <span class="show-image">
+                                  <i class="iline2-arrow423"></i>
+                                </span>
+                              </p>
+                            </div>
+                          </a>
+                        </header>
+                        <h4 class="text-primary text-center text-uppercase mar-top-sm">{{ post.title }}</h4>
+                        <p>
+                          {{ post.content | truncate(1000) }}
+                        </p>
+                        <a class="btn btn-primary text-uppercase" href="{{ path('platform_post', {'id': post.id}) }}"  role="button"> Read more</a>
+                      </div>
+                    </article>
+{% endfor %}
+                    <!-- /.blog-post -->
+                   
+                  </section>
+                <!-- .navigation -->
+                <nav class="navigation paging-navigation">
+                  <ul class="page-numbers pagination">
+			{% for p in range(1, nbPages) %}
+                    <li>
+			<a class="page-numbers pagination {% if p == page %}current{% endif %}" href="{{ path('platform_posts', {'page': p}) }}">{{ p }}</a>
+		    </li>
+			{% endfor %}
+                  </ul>
+                </nav><!-- /.navigation -->
+                </div>
+                <!-- /Left part -->
+                <!-- /Right part -->
+                <div class="col-md-4 blog-sidebar">
+                  <!-- Categories List -->
+                  <div class="post-detail">
+                    <div class="post-detail-body sep-xs">
+                      <h3 class="text-primary text-uppercase text-center">Categories</h3>
+                      <ul class="text-capitalize sidebar">
+			{% for category in categories %}
+				 <li><a href="{{ path('platform_posts', {'categoryId':category.id}) }}" class="iline1-spiral4">{{ category.name }}</a></li>
+			{% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- Categories List End -->
+                  
+                </div>
+                <!-- /Right part -->
+              </div>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+</section>
+{% endblock %}    
+
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+

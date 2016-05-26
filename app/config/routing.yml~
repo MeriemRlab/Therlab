@@ -1,0 +1,70 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+platform_home:
+    path:     /
+    defaults: { _controller: AppBundle:Therlab:index }
+
+platform_posts:
+    path:     /blog/{page}/{categoryId}
+    defaults:  
+        _controller: AppBundle:Therlab:posts
+        page:        1
+        categoryId: null
+    requirements:
+        page: \d*
+
+platform_post:
+    path:     /post/{id}
+    defaults: { _controller: AppBundle:Therlab:post }
+    requirements:
+        id: \d+
+
+platform_members:
+    path:     /therlab/members
+    defaults: { _controller: AppBundle:Therlab:members }
+
+platform_projects:
+    path:     /therlab/projects
+    defaults: { _controller: AppBundle:Therlab:projects }
+
+platform_consulting:
+    path:     /therlab/consulting
+    defaults: { _controller: AppBundle:Therlab:consulting }
+
+platform_ngos:
+    path:     /therlab/ngos
+    defaults: { _controller: AppBundle:Therlab:ngos }
+
+platform_art-science:
+    path:     /therlab/artAndScience
+    defaults: { _controller: AppBundle:Therlab:artScience }
+
+platform_publications:
+    path:     /therlab/publications
+    defaults: { _controller: AppBundle:Therlab:publications }
+
+platform_blaschka:
+    path:     /therlab/blaschka
+    defaults: { _controller: AppBundle:Therlab:blaschka }
+
+platform_light-sheet:
+    path:     /therlab/light-sheet
+    defaults: { _controller: AppBundle:Therlab:lightSheet }
+
+platform_3D-Models:
+    path:     /therlab/3D-Models
+    defaults: { _controller: AppBundle:Therlab:models3d }
+
+platform_model:
+    path:     /therlab/3D-Models/{id}
+    defaults: { _controller: AppBundle:Therlab:model }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+easy_admin_bundle:
+    resource: "@AppBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin

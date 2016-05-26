@@ -1,0 +1,18 @@
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "paging":   false,
+        "info":     false
+    } );
+} );
+
+$('#example').dataTable( {
+  "columnDefs": [
+    { "width": "20%", "targets": 0 }
+  ]
+} );
+
+$('#example').on( 'click', 'tbody tr', function () {
+  window.location.href = $(this).attr('href');
+} );
+
+

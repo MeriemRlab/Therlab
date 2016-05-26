@@ -1,0 +1,118 @@
+{# base-ngos-cons.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - NGos
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+ 
+   {{ parent()}}
+ <!-- MAIN CONTAINER -->
+    <div class="main-content">
+      <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-9" data-type="sprite" data-offsetY="-650" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="#">Science and Society</a></li>
+                <li><a class="link" href="consulting.html">Ngos</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- HEADER TREE END -->
+      <!-- FEATURES INTRODUCTION SECTION -->
+      <section>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- .row -->
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="text-uppercase text-primary wow fadeInDown text-center"  data-wow-duration=".8s" data-wow-delay=".2s">NGos</h1>
+                  <div class="text-center">
+                    <span class="separator">
+                      <i class="icon icon-small iline2-ruler9 text-primary no-margin"></i>
+                    </span>
+                  </div>
+                  <p class="wow fadeInUp text-center"  data-wow-duration="1s" data-wow-delay=".3s">
+                    The "R-Lab" offers consulting services on biological imaging from optical device development 
+                    to image processing and related techniques and technologies. We have worked with several companies 
+                    ranging form biological surveys and advices on ecological impact to high throughtput systems. 
+                    Our fields or expertise includes tissue engineering (e.g. 3D bioprinting), 3D biological imaging, 
+                    marine life imaging, light sheet microscopy, laser nanosurgery and cell micromanipulation 
+                    as well as physiology and taxonomyn of marine organisms.
+                  </p>
+                  <p class="text-center">
+                  We welcome inquiries from UCD faculty, staff, postdocs, and grad students at all levels of expertise. 
+                  Our standard consulting services are free of charge for NGOs and UCD staff.
+                  </p>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- FEATURES INTRODUCTION SECTION END -->
+      <!-- FEATURES BODY SECTION -->
+      <section class="pattern-3 no-padding-right">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+                <!-- Begin logos section-->
+       
+                  <!-- .logos -->
+                  <ul class="logos">
+                    {% for image in images %}
+                    <li><img src="{{ asset("" ~ image.url  ) }}" alt="{{ image.url }}"/></li>
+			{% endfor %}
+                  </ul>
+                  <!-- /.logos -->
+               
+      <!-- /Logos section-->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- FEATURES BODY SECTION END -->
+      
+
+  {% endblock %}
+ 
+    
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+

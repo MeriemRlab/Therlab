@@ -1,0 +1,72 @@
+<?php
+// src/AppBundle/Controller/AdminController.php
+namespace AppBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+
+class AdminController extends EasyAdminController
+{
+	
+    /**
+     * @Route("/", name="easyadmin")
+     */
+    public function indexAction(Request $request)
+    {
+        return parent::indexAction($request);
+    }
+
+   /**
+     * Allows applications to modify the entity associated with the item being
+     * created before persisting it.
+     *
+     * @param object $entity
+     */
+    protected function prePersistEntity($entity)
+    {
+	  if ($entity instanceof SketchfabModel)
+       {
+		    echo("<script>console.log('PHP: function executed );</script>");
+		    return $this->updateModel($entity);
+        }
+    }
+
+	private function updateModel($entity)
+    {
+        echo("<script>console.log('PHP: function executed );</script>");
+    	$name = $entity->getName();
+    	$description = $entity->getDescription();
+    	$file = $entity->getModel();
+    	$tags = $entity->getTags();
+
+    	$params = array(
+    	"name" => $name,
+    	"description" => $description,
+    	"modelFile" => new \CurlFile($file),
+    	"token" => '904ce0bdc18d4068abb58d0b066228ff',
+    	"tags" => $tags,
+    	"private" => 1
+     	);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,true); 
+	curl_setopt($ch, CURLOPT_URL, "https://api.sketchfab.com/v2/models");
+	$result = curl_exec($ch);
+	if($result === false)
+	  echo("<script>console.log('PHP: ".curl_error($ch)."');</script>"); 
+	 else{
+		$json = json_decode($result, true);
+		echo("<script>console.log('PHP: ".$json['uid']."');</script>");
+
+		$modelId = $json['uid'];
+		$entity->setModelId($modelId);
+		}
+
+        return $entity;
+    }
+
+
+}

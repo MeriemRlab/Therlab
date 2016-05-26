@@ -1,0 +1,120 @@
+{# members.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - Members
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+  
+  {{ parent() }}
+
+
+ <!-- MAIN CONTAINER -->
+    <div class="main-content">
+      <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-1" data-type="sprite" data-offsetY="-700" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="{{ path('platform_members') }}">Members</a></li>
+                <li><a class="link" href="members.html">Current</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- HEADER TREE END -->
+      <section>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- Team introduction text -->
+              <!-- .row -->
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="text-uppercase text-primary wow fadeInDown text-center"  data-wow-duration=".8s" data-wow-delay=".2s">Our Members</h1>
+                 
+                  <div class="text-center">
+                    <span class="separator">
+                      <i class="icon icon-small iline1-multiple10 text-primary no-margin"></i>
+                    </span>
+                  </div>
+                  <p class="wow fadeInUp text-center"  data-wow-duration="1s" data-wow-delay=".3s">
+                    Our laboratory members present and past are listed below. They are interns from all around the world,
+                     already 16 nationalities and counting; BSc 4th year projects, MSc students, PhDs, Database managers,
+                     collaborators and artists. As an integrative laboratory we welcome physicists, mechanical and electronic engineers,
+                     chemists, computing specialists, biologist, cell biologists as well as curious artists whatever their gender, 
+                     religion or music taste (depending on the volume level reached during working hours!).
+                  </p>
+                </div>
+              </div>
+              <!-- /.row -->
+              <!--/ Team introduction text -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <section class="pattern-3 no-padding-right">
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- All team members -->
+              <div class="member-body">
+					  <ul class="isotope-member wow fadeInUp" data-wow-duration="1s" data-wow-delay=".9s">
+						<!--team member-->
+						{% for member in members %}
+						<li class="member">
+							  <img src="{{ asset("" ~ member.image.url  ) }}" alt="{{ member.image.alt }}" class="img-responsive">
+							  <h2 class="text-primary">{{ member.name }}</h2>
+							  <p>
+								{{ member.bio }}
+							  </p>
+						</li>
+						{% endfor %}
+						<!--/team member-->
+					  </ul>
+			  </div>
+              <!-- /All team members -->
+ 		 </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+
+
+
+  {% endblock %}    
+
+
+  {% block javascripts %}
+   {{ parent() }}
+  {% endblock %}
+

@@ -1,0 +1,41 @@
+easy_admin:
+    entities:
+        # the configuration of this entity is very verbose because it's used as
+        # an example to show all the configuration options available for entities
+        # check out the configuration of the other entities to see how concise
+        # can be the configuration of your backend
+        SketchfabModel:
+            class: AppBundle\Entity\SketchfabModel
+            label: '3D Models'
+            list:
+                fields:
+                    - id
+                    - name
+                    - author
+                    - tags
+                    - model_quality
+                    - model_size
+                    - model_3d_size
+            show:
+                fields:
+                    - id
+                    - name
+                    - author
+                    - description
+                    - { property: 'model', type: 'model', base_path: %app.path.model_file% }
+                    - tags
+                    - model_quality
+                    - model_size
+                    - model_3d_size
+                    - disclaimer
+            form:
+                fields:
+                    - name
+                    - author
+                    - description
+                    - { property: 'modelFile', type: 'Vich\UploaderBundle\Form\Type\VichFileType' }
+                    - tags
+                    - model_quality
+                    - model_size
+                    - model_3d_size
+                    - disclaimer

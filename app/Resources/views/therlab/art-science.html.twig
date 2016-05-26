@@ -1,0 +1,95 @@
+{# art-science.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+  {% block title %}
+    The "R" Lab - Art & Science
+  {% endblock %}
+
+  {% block css %}
+	{{ parent() }}
+  {% endblock %}
+
+  {% block body%}
+ 
+   {{ parent()}}
+
+     <!-- MAIN CONTAINER -->
+    <div class="main-content">
+      <!-- HEADER TREE -->
+      <section class="header-tree" data-speed="8" data-type="background">
+        <h2 class="hidden">Header tree</h2>
+        <!-- parallax background -->
+        <div class="cover-12" data-type="sprite" data-offsetY="-250" data-Xposition="50%" data-speed="-2"></div>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <ul class="breadcrumb clearfix mar-top-3x">
+                <li><a class="link text-success" href="/">The "R" Lab</a></li>
+                <li><a class="link" href="#">Science and Society</a></li>
+                <li><a class="link" href="#">Art & Science</a></li>
+              </ul>
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- HEADER TREE END -->
+	<section>
+        <!-- .container -->
+        <div class="container">
+          <!-- .row -->
+          <div class="row">
+            <!-- .col-md-12 -->
+            <div class="col-md-12">
+              <!-- Team introduction text -->
+              <!-- .row -->
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="text-uppercase text-primary wow fadeInDown text-center"  data-wow-duration=".8s" data-wow-delay=".2s">Art & Science</h1>
+                 
+                  <div class="text-center">
+                    <span class="separator">
+                      <i class="icon icon-small iline1-bird9 text-primary no-margin"></i>
+                    </span>
+                  </div>
+                  <p class="wow fadeInUp text-center"  data-wow-duration="1s" data-wow-delay=".3s">
+                    The "R" lab (renaissance) is an interdisciplinary platform 
+					integrating knowledge from Arts to Zoology to put Life Sciences into context.
+					We follow circular economy approaches and move forward 
+					towards a fully three dimensional view of the biological world. 
+                  </p>
+                </div>
+              </div>
+              <!-- /.row -->
+              <!--/ Team introduction text -->
+            </div>
+            <!-- /.col-md-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+        {% set classes = ['blue', 'pattern-3', 'white'] %}
+        {% for project in projects %}
+		<section class="{{ cycle(classes, loop.index) }}">
+				
+			{{ include ('art-project.html.twig' , {project: project}, with_context=false) }}
+		
+		</section>		
+	{% endfor %}
+      
+
+  {% endblock %}
+ 
+    
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
